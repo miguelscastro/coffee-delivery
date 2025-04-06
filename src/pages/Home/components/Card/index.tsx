@@ -1,5 +1,4 @@
 import { ShoppingCartSimple } from '@phosphor-icons/react'
-import { CoffeeProps } from '../..'
 import {
   AddToCartButton,
   CardContainer,
@@ -9,8 +8,9 @@ import {
   Price,
 } from './styles'
 import { useTheme } from 'styled-components'
-import { useState } from 'react'
 import { QuantityInput } from '../../../../components/Form/QuantityInput'
+import { useState } from 'react'
+import { CoffeeProps } from '../../../../contexts/CartContext'
 
 interface CardProps {
   coffee: CoffeeProps
@@ -27,7 +27,6 @@ export function Card({ coffee }: CardProps) {
   function handleIncrementQuantity() {
     setQuantity((state) => state + 1)
   }
-
   const theme = useTheme()
 
   return (

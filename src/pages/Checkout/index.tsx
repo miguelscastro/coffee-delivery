@@ -1,4 +1,5 @@
 import { AddressInfo } from '../components/AddressInfo'
+import { Cart } from '../components/Cart'
 import { Address, CartTotal, Container } from './styles'
 
 export function Checkout() {
@@ -11,7 +12,7 @@ export function Checkout() {
 
       <CartTotal>
         <h2>Cafés Selecionados</h2>
-        {/* <SelectedCoffees /> */}
+        <Cart />
       </CartTotal>
     </Container>
   )

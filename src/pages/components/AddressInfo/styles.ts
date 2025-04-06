@@ -107,10 +107,14 @@ export const PaymentOption = styled.label`
     padding: 1rem;
     border-radius: 6px;
 
+    transition: 0.2s;
     background: ${({ theme }) => theme.colors['base-button']};
 
     p {
       ${mixins.fonts.buttonM}
     }
+  }
+  > div:hover {
+    background-color: ${({ theme }) => theme.colors['base-hover']};
   }
 `
