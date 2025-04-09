@@ -46,11 +46,30 @@ export const Aside = styled.aside`
     background-color: ${({ theme }) => theme.colors['yellow-light']};
     color: ${({ theme }) => theme.colors['yellow-dark']};
 
+    position: relative;
+
     padding: 0.5rem;
     border-radius: 6px;
 
     &[aria-disabled='true'] {
       pointer-events: none;
+    }
+    span {
+      ${mixins.fonts.textS};
+      font-weight: bold;
+      color: ${({ theme }) => theme.colors.white};
+      background-color: ${({ theme }) => theme.colors['yellow-dark']};
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      transform: translate(50%, -50%);
     }
   }
 `

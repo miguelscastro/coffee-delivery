@@ -11,12 +11,17 @@ import { useTheme } from 'styled-components'
 import { QuantityInput } from '../../../../components/Form/QuantityInput'
 import { useState } from 'react'
 import { CoffeeProps } from '../../../../contexts/CartContext'
+import { useCart } from '../../../../hooks/useCart'
 
 interface CardProps {
   coffee: CoffeeProps
 }
 
 export function Card({ coffee }: CardProps) {
+  const { addCoffeeToCart } = useCart()
+
+  const theme = useTheme()
+
   const [quantity, setQuantity] = useState<number>(1)
 
   function handleDecrementQuantity() {
@@ -27,7 +32,11 @@ export function Card({ coffee }: CardProps) {
   function handleIncrementQuantity() {
     setQuantity((state) => state + 1)
   }
-  const theme = useTheme()
+
+  function handleAddToCart() {
+    addCoffeeToCart({ ...coffee, quantity })
+    setQuantity(0)
+  }
 
   return (
     <CardContainer>
@@ -55,7 +64,7 @@ export function Card({ coffee }: CardProps) {
             quantity={quantity}
             incrementQuantity={handleIncrementQuantity}
           />
-          <AddToCartButton>
+          <AddToCartButton onClick={handleAddToCart}>
             <ShoppingCartSimple
               weight="fill"
               size={22}
