@@ -12,10 +12,27 @@ import {
 import coffeDeliveryBanner from '../../assets/images/banner/ilustracao-banner.svg'
 import backgroundEffect from '../../assets/images/banner/background-effect.png'
 import { Card } from './components/Card'
-import { useCart } from '../../hooks/useCart'
+import { useEffect, useState } from 'react'
+
+export interface CoffeeProps {
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  price: number
+  image: string
+}
 
 export function Home() {
-  const { coffees } = useCart()
+  const [coffeesData, setCoffeesData] = useState<CoffeeProps[]>([])
+  useEffect(() => {
+    const fetchCoffees = async () => {
+      const response = await fetch('/src/data/coffees.json')
+      const data = await response.json()
+      setCoffeesData(data.coffees)
+    }
+    fetchCoffees()
+  }, [])
 
   const theme = useTheme()
   return (
@@ -76,7 +93,7 @@ export function Home() {
       <CoffesList>
         <h2>Nossos cafés</h2>
         <Coffees>
-          {coffees.map((coffee) => {
+          {coffeesData.map((coffee) => {
             return <Card key={coffee.id} coffee={coffee} />
           })}
         </Coffees>

@@ -1,14 +1,11 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
-import { produce } from 'immer'
-
-export interface CoffeeProps {
-  id: string
-  title: string
-  description: string
-  tags: string[]
-  price: number
-  image: string
-}
+import { createContext, ReactNode, useReducer } from 'react'
+import { cartReducer } from '../reducers/cart/reducer'
+import {
+  addItemToCartAction,
+  changeCartItemQuantityAction,
+  removeCartItemAction,
+} from '../reducers/cart/actions'
+import { CoffeeProps } from '../pages/Home'
 
 export interface CartItem extends CoffeeProps {
   quantity: number
@@ -19,8 +16,7 @@ interface CartContextProviderProps {
 }
 
 interface CartContextType {
-  coffees: CoffeeProps[]
-  cartItems: CartItem[]
+  coffees: CartItem[]
   cartItemsTotal: number
   deliveryFee: number
   OrderTotal: number
@@ -35,9 +31,11 @@ interface CartContextType {
 export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [cartState, dispatch] = useReducer(cartReducer, { coffees: [] })
 
-  const cartItemsTotal = cartItems.reduce((total, cartItem) => {
+  const { coffees } = cartState
+
+  const cartItemsTotal = coffees.reduce((total, cartItem) => {
     return total + cartItem.price * cartItem.quantity
   }, 0)
 
@@ -45,68 +43,25 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const OrderTotal = cartItemsTotal + deliveryFee
 
-  const [coffees, setCoffees] = useState<CoffeeProps[]>([])
-  useEffect(() => {
-    const fetchCoffees = async () => {
-      const response = await fetch('/src/data/coffees.json')
-      const data = await response.json()
-      setCoffees(data.coffees)
-    }
-    fetchCoffees()
-  }, [])
-
-  function addCoffeeToCart(coffee: CartItem) {
-    const coffeeInCart = cartItems.findIndex(
-      (cartItem) => cartItem.id === coffee.id,
-    )
-
-    const newCart = produce(cartItems, (draft) => {
-      if (coffeeInCart < 0) {
-        draft.push(coffee)
-      } else {
-        draft[coffeeInCart].quantity += coffee.quantity
-      }
-    })
-    setCartItems(newCart)
+  function addCoffeeToCart(coffeeToAdd: CartItem) {
+    dispatch(addItemToCartAction(coffeeToAdd))
   }
 
   function changeCartItemQuantity(
-    coffeeId: string,
+    coffeeChanged: string,
     type: 'increase' | 'decrease',
   ) {
-    const newCart = produce(cartItems, (draft) => {
-      const coffeeInCart = cartItems.findIndex(
-        (cartItem) => cartItem.id === coffeeId,
-      )
-      if (coffeeInCart >= 0) {
-        const coffee = draft[coffeeInCart]
-        if (type === 'decrease' && coffee.quantity > 1) {
-          coffee.quantity -= 1
-        } else if (type === 'increase' && coffee.quantity >= 1) {
-          coffee.quantity += 1
-        }
-      }
-    })
-    setCartItems(newCart)
+    dispatch(changeCartItemQuantityAction(coffeeChanged, type))
   }
 
-  function removeCartItem(coffeeId: string) {
-    const newCart = produce(cartItems, (draft) => {
-      const coffeeToRemove = cartItems.findIndex(
-        (cartItem) => cartItem.id === coffeeId,
-      )
-      if (coffeeToRemove >= 0) {
-        draft.splice(coffeeToRemove, 1)
-      }
-    })
-    setCartItems(newCart)
+  function removeCartItem(coffeeToRemove: string) {
+    dispatch(removeCartItemAction(coffeeToRemove))
   }
 
   return (
     <CartContext.Provider
       value={{
         coffees,
-        cartItems,
         cartItemsTotal,
         deliveryFee,
         OrderTotal,

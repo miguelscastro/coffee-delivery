@@ -4,14 +4,14 @@ import { SelectedCoffee } from '../SelectedCoffeeCard'
 import { Coffees, Container, Total } from './styles'
 
 export function Cart() {
-  const { cartItems, cartItemsTotal, deliveryFee, OrderTotal } = useCart()
+  const { coffees, cartItemsTotal, deliveryFee, OrderTotal } = useCart()
 
   return (
     <>
       <Container>
         <Coffees>
-          {cartItems.map((item) => {
-            return <SelectedCoffee key={item.id} coffee={item} />
+          {coffees.map((coffee) => {
+            return <SelectedCoffee key={coffee.id} coffee={coffee} />
           })}
         </Coffees>
         <Total>

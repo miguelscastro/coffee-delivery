@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 
 export function Header() {
-  const { cartItems } = useCart()
+  const { coffees } = useCart()
   return (
     <Container>
       <HeaderContainer>
@@ -19,7 +19,7 @@ export function Header() {
           </div>
           <NavLink to="/checkout">
             <ShoppingCart size={22} weight="fill" />
-            {cartItems.length > 0 ? <span>{cartItems.length}</span> : null}
+            {coffees.length > 0 ? <span>{coffees.length}</span> : null}
           </NavLink>
         </Aside>
       </HeaderContainer>
