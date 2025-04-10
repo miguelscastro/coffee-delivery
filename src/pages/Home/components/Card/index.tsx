@@ -35,7 +35,7 @@ export function Card({ coffee }: CardProps) {
 
   function handleAddToCart() {
     addCoffeeToCart({ ...coffee, quantity })
-    setQuantity(0)
+    setQuantity(1)
   }
 
   return (

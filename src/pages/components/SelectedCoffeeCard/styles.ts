@@ -12,37 +12,50 @@ export const Container = styled.div`
   }
 
   border-bottom: 1px solid ${({ theme }) => theme.colors['base-button']};
+`
+
+export const CoffeeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.25rem;
 
   > div {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 1.25rem;
-
-    > img {
-      width: 4rem;
-      height: 4rem;
-    }
-
-    h3 {
-      ${mixins.fonts.textM}
-      margin-bottom: 0.25rem;
-    }
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  > span {
+
+  > img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  h3 {
     ${mixins.fonts.textM}
-    font-weight: bold;
   }
+`
+
+export const Controller = styled.div`
+  display: flex;
+  align-items: center;
+  width: 171px;
+
+  gap: 0.5rem;
+`
+
+export const CoffeePrice = styled.span`
+  ${mixins.fonts.textM}
+  font-weight: bold;
 `
 export const RemoveCoffee = styled.button`
   display: flex;
-  justify-content: space-between;
   gap: 0.25rem;
 
-  max-width: 91px;
+  max-width: 5.6875rem;
 
-  padding: 0 0.5rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors['base-button']};
 

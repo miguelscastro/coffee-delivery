@@ -1,49 +1,54 @@
-import { Container, RemoveCoffee } from './styles'
-import coffeeImg from '../../../assets/images/coffees/cafe-com-leite.png'
+import {
+  CoffeeContainer,
+  CoffeePrice,
+  Container,
+  Controller,
+  RemoveCoffee,
+} from './styles'
 import { Trash } from '@phosphor-icons/react'
+import { CartItem } from '../../../contexts/CartContext'
+import { formatMoney } from '../../../utils/formatMoney'
+import { useCart } from '../../../hooks/useCart'
+import { QuantityInput } from '../../../components/Form/QuantityInput'
 
-export function SelectedCoffee() {
+interface SelectedCoffeeProps {
+  coffee: CartItem
+}
+
+export function SelectedCoffee({ coffee }: SelectedCoffeeProps) {
+  const { changeCartItemQuantity, removeCartItem } = useCart()
+  function handleIncrementQuantity() {
+    changeCartItemQuantity(coffee.id, 'increase')
+  }
+  function handleDecrementQuantity() {
+    changeCartItemQuantity(coffee.id, 'decrease')
+  }
+  function handleRemoveCoffee() {
+    removeCartItem(coffee.id)
+  }
   return (
     <>
       <Container>
-        <div>
-          <img src={coffeeImg} alt="" />
+        <CoffeeContainer>
+          <img src={coffee.image} alt={coffee.description} />
           <div>
-            <h3>Expresso tradicional</h3>
-            <div>
-              {/* <QuantityInput
-            decrementQuantity={handleDecrementQuantity}
-            quantity={quantity}
-            incrementQuantity={handleIncrementQuantity}
-          /> */}
-              <RemoveCoffee>
+            <h3>{coffee.title}</h3>
+            <Controller>
+              <QuantityInput
+                decrementQuantity={handleDecrementQuantity}
+                quantity={coffee.quantity}
+                incrementQuantity={handleIncrementQuantity}
+              />
+              <RemoveCoffee onClick={handleRemoveCoffee}>
                 <Trash />
                 <p>REMOVER</p>
               </RemoveCoffee>
-            </div>
+            </Controller>
           </div>
-        </div>
-        <span>RS 15,00</span>
-      </Container>
-      <Container>
-        <div>
-          <img src={coffeeImg} alt="" />
-          <div>
-            <h3>Expresso tradicional</h3>
-            <div>
-              {/* <QuantityInput
-            decrementQuantity={handleDecrementQuantity}
-            quantity={quantity}
-            incrementQuantity={handleIncrementQuantity}
-          /> */}
-              <RemoveCoffee>
-                <Trash />
-                <p>REMOVER</p>
-              </RemoveCoffee>
-            </div>
-          </div>
-        </div>
-        <span>RS 15,00</span>
+        </CoffeeContainer>
+        <CoffeePrice>
+          R$ {formatMoney(coffee.price * coffee.quantity)}
+        </CoffeePrice>
       </Container>
     </>
   )
