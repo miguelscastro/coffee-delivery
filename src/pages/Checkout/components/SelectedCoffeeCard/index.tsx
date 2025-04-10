@@ -1,3 +1,7 @@
+import { QuantityInput } from '../../../../components/Form/QuantityInput'
+import { useCart } from '../../../../hooks/useCart'
+import { CartItem } from '../../../../reducers/cart/reducer'
+import { formatMoney } from '../../../../utils/formatMoney'
 import {
   CoffeeContainer,
   CoffeePrice,
@@ -6,10 +10,6 @@ import {
   RemoveCoffee,
 } from './styles'
 import { Trash } from '@phosphor-icons/react'
-import { CartItem } from '../../../contexts/CartContext'
-import { formatMoney } from '../../../utils/formatMoney'
-import { useCart } from '../../../hooks/useCart'
-import { QuantityInput } from '../../../components/Form/QuantityInput'
 
 interface SelectedCoffeeProps {
   coffee: CartItem

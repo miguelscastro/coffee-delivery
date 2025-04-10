@@ -1,5 +1,5 @@
-import { useCart } from '../../../hooks/useCart'
-import { formatMoney } from '../../../utils/formatMoney'
+import { useCart } from '../../../../hooks/useCart'
+import { formatMoney } from '../../../../utils/formatMoney'
 import { SelectedCoffee } from '../SelectedCoffeeCard'
 import { Coffees, Container, Total } from './styles'
 

@@ -1,15 +1,10 @@
 import { createContext, ReactNode, useReducer } from 'react'
-import { cartReducer } from '../reducers/cart/reducer'
+import { CartItem, cartReducer } from '../reducers/cart/reducer'
 import {
   addItemToCartAction,
   changeCartItemQuantityAction,
   removeCartItemAction,
 } from '../reducers/cart/actions'
-import { CoffeeProps } from '../pages/Home'
-
-export interface CartItem extends CoffeeProps {
-  quantity: number
-}
 
 interface CartContextProviderProps {
   children: ReactNode

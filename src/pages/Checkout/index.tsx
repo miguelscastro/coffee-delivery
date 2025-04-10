@@ -1,5 +1,5 @@
-import { AddressInfo } from '../components/AddressInfo'
-import { Cart } from '../components/Cart'
+import { AddressInfo } from './components/AddressInfo'
+import { Cart } from './components/Cart'
 import { Address, CartTotal, Container } from './styles'
 
 export function Checkout() {
