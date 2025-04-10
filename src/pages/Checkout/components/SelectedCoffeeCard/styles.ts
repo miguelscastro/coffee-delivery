@@ -41,6 +41,7 @@ export const Controller = styled.div`
   display: flex;
   align-items: center;
   width: 171px;
+  height: 38px;
 
   gap: 0.5rem;
 `
@@ -66,5 +67,9 @@ export const RemoveCoffee = styled.button`
   > p {
     ${mixins.fonts.buttonM}
     color: ${({ theme }) => theme.colors['base-text']};
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.colors['base-hover']};
   }
 `

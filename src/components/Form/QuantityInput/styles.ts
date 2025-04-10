@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mixins } from '../../../styles/mixins'
 
 export const Container = styled.div`
   padding: 0.5rem;
@@ -7,12 +8,17 @@ export const Container = styled.div`
   max-height: 38px;
 
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 4px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors['base-hover']};
+  }
 
   button {
     background-color: transparent;
     display: flex;
-    align-items: center;
   }
 
   button svg {
@@ -26,6 +32,8 @@ export const Container = styled.div`
   }
 
   span {
+    ${mixins.fonts.textM}
+    user-select: none;
     color: ${({ theme }) => theme.colors['base-title']};
   }
 `

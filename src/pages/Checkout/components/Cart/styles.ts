@@ -44,5 +44,10 @@ export const Total = styled.div`
     padding: 0.75rem 0.5rem;
     border-radius: 6px;
     ${mixins.fonts.buttonG}
+
+    &:hover {
+      background: ${({ theme }) => theme.colors['yellow-dark']};
+      transition: 0.1s;
+    }
   }
 `
