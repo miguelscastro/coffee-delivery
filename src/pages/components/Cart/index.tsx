@@ -1,24 +1,28 @@
 import { useCart } from '../../../hooks/useCart'
+import { formatMoney } from '../../../utils/formatMoney'
 import { SelectedCoffee } from '../SelectedCoffeeCard'
-import { Container, Total } from './styles'
+import { Coffees, Container, Total } from './styles'
 
 export function Cart() {
-  const { cartItems } = useCart()
+  const { cartItems, cartItemsTotal, deliveryFee, OrderTotal } = useCart()
+
   return (
     <>
       <Container>
-        {cartItems.map((item) => {
-          return <SelectedCoffee key={item.id} coffee={item} />
-        })}
+        <Coffees>
+          {cartItems.map((item) => {
+            return <SelectedCoffee key={item.id} coffee={item} />
+          })}
+        </Coffees>
         <Total>
           <div>
-            <p>Total de itens</p> <span>R$ 5,00</span>
+            <p>Total de itens</p> <span>R$ {formatMoney(cartItemsTotal)}</span>
           </div>
           <div>
-            <p>Entrega</p> <span>R$ 3,00</span>
+            <p>Entrega</p> <span>R$ {formatMoney(deliveryFee)}</span>
           </div>
           <div>
-            <p>Total</p> <span>R$ 8,00</span>
+            <p>Total</p> <span>R$ {formatMoney(OrderTotal)}</span>
           </div>
           <button>CONFIRMAR PEDIDO</button>
         </Total>

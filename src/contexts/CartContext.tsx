@@ -21,6 +21,9 @@ interface CartContextProviderProps {
 interface CartContextType {
   coffees: CoffeeProps[]
   cartItems: CartItem[]
+  cartItemsTotal: number
+  deliveryFee: number
+  OrderTotal: number
   addCoffeeToCart: (coffee: CartItem) => void
   changeCartItemQuantity: (
     coffeeId: string,
@@ -33,6 +36,14 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+
+  const cartItemsTotal = cartItems.reduce((total, cartItem) => {
+    return total + cartItem.price * cartItem.quantity
+  }, 0)
+
+  const deliveryFee = 3.5
+
+  const OrderTotal = cartItemsTotal + deliveryFee
 
   const [coffees, setCoffees] = useState<CoffeeProps[]>([])
   useEffect(() => {
@@ -96,6 +107,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         coffees,
         cartItems,
+        cartItemsTotal,
+        deliveryFee,
+        OrderTotal,
         addCoffeeToCart,
         changeCartItemQuantity,
         removeCartItem,

@@ -10,6 +10,14 @@ export const Container = styled.section`
 
   background: ${({ theme }) => theme.colors['base-card']};
 `
+export const Coffees = styled.div`
+  max-height: 370px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+`
 
 export const Total = styled.div`
   display: flex;
