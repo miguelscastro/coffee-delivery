@@ -10,9 +10,13 @@ export function Cart() {
     <>
       <Container>
         <Coffees>
-          {coffees.map((coffee) => {
-            return <SelectedCoffee key={coffee.id} coffee={coffee} />
-          })}
+          {coffees.length == 0 ? (
+            <h3>Seu carrinho está vazio</h3>
+          ) : (
+            coffees.map((coffee) => {
+              return <SelectedCoffee key={coffee.id} coffee={coffee} />
+            })
+          )}
         </Coffees>
         <Total>
           <div>
