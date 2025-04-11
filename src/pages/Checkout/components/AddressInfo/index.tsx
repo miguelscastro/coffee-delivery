@@ -45,17 +45,34 @@ export function AddressInfo() {
         </InfoHeader>
         <InfoContent $display="grid">
           <InputWrapper $area="cep">
-            <TextInput placeholder="CEP" {...register('cep')} type="number" />
+            <TextInput
+              placeholder="CEP"
+              {...register('cep')}
+              type="number"
+              required
+            />
             {errors.cep?.message && <ErrorText>{errors.cep.message}</ErrorText>}
           </InputWrapper>
           <InputWrapper $area="street">
-            <TextInput placeholder="Rua" {...register('street')} />
+            <TextInput
+              placeholder="Rua"
+              {...register('street')}
+              type="text"
+              maxLength={61}
+              required
+            />
             {errors.street?.message && (
               <ErrorText>{errors.street.message}</ErrorText>
             )}
           </InputWrapper>
           <InputWrapper $area="number">
-            <TextInput placeholder="Número" {...register('number')} />
+            <TextInput
+              placeholder="Número"
+              {...register('number')}
+              type="number"
+              required
+              maxLength={8}
+            />
             {errors.number?.message && (
               <ErrorText>{errors.number.message}</ErrorText>
             )}
@@ -65,19 +82,36 @@ export function AddressInfo() {
             {isFilled === '' && <OptionalText>Opcional</OptionalText>}
           </InputWrapper>
           <InputWrapper $area="neighborhood">
-            <TextInput placeholder="Bairro" {...register('neighborhood')} />
+            <TextInput
+              placeholder="Bairro"
+              {...register('neighborhood')}
+              type="text"
+              required
+            />
             {errors.neighborhood?.message && (
               <ErrorText>{errors.neighborhood.message}</ErrorText>
             )}
           </InputWrapper>
           <InputWrapper $area="city">
-            <TextInput placeholder="Cidade" {...register('city')} />
+            <TextInput
+              placeholder="Cidade"
+              {...register('city')}
+              type="text"
+              required
+            />
             {errors.city?.message && (
               <ErrorText>{errors.city.message}</ErrorText>
             )}
           </InputWrapper>
           <InputWrapper $area="state">
-            <TextInput placeholder="UF" {...register('state')} />
+            <TextInput
+              placeholder="UF"
+              {...register('state')}
+              type="text"
+              required
+              minLength={2}
+              maxLength={2}
+            />
             {errors.state?.message && (
               <ErrorText>{errors.state.message}</ErrorText>
             )}
@@ -100,6 +134,7 @@ export function AddressInfo() {
               <TextInput
                 type="radio"
                 value="credit"
+                required
                 {...register('paymentMethod')}
               />
               <div>

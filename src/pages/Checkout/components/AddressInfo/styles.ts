@@ -47,6 +47,7 @@ export const InfoContent = styled.div<{ $display: 'grid' | 'flex' }>`
         text-align: center;
 
         > div {
+         position: relative;
           display: flex;
           flex-direction: row;
           justify-content: space-evenly;
@@ -143,7 +144,13 @@ export const PaymentOption = styled.label`
   user-select: none;
 
   > input[type='radio'] {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    top: 120%;
+    right: 50%;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
   }
 
   &:has(input:checked) > div {
