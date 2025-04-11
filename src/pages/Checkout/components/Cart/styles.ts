@@ -53,9 +53,14 @@ export const Total = styled.div`
     border-radius: 6px;
     ${mixins.fonts.buttonG}
 
-    &:hover {
+    &:not(:disabled):hover {
       background: ${({ theme }) => theme.colors['yellow-dark']};
       transition: 0.1s;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
   }
 `

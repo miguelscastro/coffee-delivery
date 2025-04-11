@@ -4,7 +4,8 @@ import { SelectedCoffee } from '../SelectedCoffeeCard'
 import { Coffees, Container, Total } from './styles'
 
 export function Cart() {
-  const { coffees, cartItemsTotal, deliveryFee, OrderTotal } = useCart()
+  const { coffees, cartItemsTotal, deliveryFee, OrderTotal, CartSize } =
+    useCart()
 
   return (
     <>
@@ -28,7 +29,7 @@ export function Cart() {
           <div>
             <p>Total</p> <span>R$ {formatMoney(OrderTotal)}</span>
           </div>
-          <button type="submit" form="order">
+          <button type="submit" form="order" disabled={CartSize <= 0}>
             CONFIRMAR PEDIDO
           </button>
         </Total>

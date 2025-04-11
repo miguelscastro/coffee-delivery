@@ -25,7 +25,7 @@ const AddressInfoValidationSchema = z.object({
   }),
 })
 
-type AddressInfoData = z.infer<typeof AddressInfoValidationSchema>
+export type AddressInfoData = z.infer<typeof AddressInfoValidationSchema>
 
 export function Checkout() {
   const AddressInfoForm = useForm<AddressInfoData>({
@@ -42,14 +42,17 @@ export function Checkout() {
     },
   })
 
-  const { handleSubmit } = AddressInfoForm
+  const { handleSubmit, reset } = AddressInfoForm
 
-  const { coffees } = useCart()
+  const { coffees, CartSize, addNewOrder } = useCart()
 
   function confirmOrder(data: AddressInfoData) {
-    const address = data
-    const order = { coffees, address }
-    console.log(order)
+    if (CartSize > 0) {
+      const address = data
+      const order = { coffees, address }
+      addNewOrder(order)
+      reset()
+    }
   }
 
   return (
@@ -58,9 +61,7 @@ export function Checkout() {
         <OrderForm
           id="order"
           autoComplete="off"
-          onSubmit={handleSubmit(confirmOrder, (errors) => {
-            console.log(errors)
-          })}
+          onSubmit={handleSubmit(confirmOrder)}
         >
           <Address>
             <h2>Complete seu pedido</h2>

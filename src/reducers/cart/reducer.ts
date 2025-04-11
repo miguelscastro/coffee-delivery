@@ -1,5 +1,6 @@
 import { produce } from 'immer'
 import { CartActions, CartActionTypes } from './actions'
+import { AddressInfoData } from '../../pages/Checkout'
 
 export interface CoffeeProps {
   id: string
