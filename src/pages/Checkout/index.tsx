@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCart } from '../../hooks/useCart'
 
 const AddressInfoValidationSchema = z.object({
-  cep: z.string({ invalid_type_error: 'Informe o CEP' }),
+  cep: z.number({ invalid_type_error: 'Informe o CEP' }),
   street: z.string().min(1, 'Informe a rua'),
   number: z.string().min(1, 'Informe o número'),
   fullAddress: z.string(),
@@ -27,7 +27,7 @@ export function Checkout() {
     resolver: zodResolver(AddressInfoValidationSchema),
   })
 
-  const { handleSubmit, register } = AddressInfoForm
+  const { handleSubmit } = AddressInfoForm
 
   const { coffees } = useCart()
 

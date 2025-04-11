@@ -1,4 +1,10 @@
 import { ShoppingCartSimple } from '@phosphor-icons/react'
+
+import { QuantityInput } from '../../../../components/Form/QuantityInput'
+import { useState } from 'react'
+import { useCart } from '../../../../hooks/useCart'
+import { CoffeeProps } from '../../../../reducers/cart/reducer'
+
 import {
   AddToCartButton,
   CardContainer,
@@ -7,11 +13,6 @@ import {
   Order,
   Price,
 } from './styles'
-import { useTheme } from 'styled-components'
-import { QuantityInput } from '../../../../components/Form/QuantityInput'
-import { useState } from 'react'
-import { CoffeeProps } from '../../../../contexts/CartContext'
-import { useCart } from '../../../../hooks/useCart'
 
 interface CardProps {
   coffee: CoffeeProps
@@ -19,8 +20,6 @@ interface CardProps {
 
 export function Card({ coffee }: CardProps) {
   const { addCoffeeToCart } = useCart()
-
-  const theme = useTheme()
 
   const [quantity, setQuantity] = useState<number>(1)
 
@@ -65,12 +64,7 @@ export function Card({ coffee }: CardProps) {
             incrementQuantity={handleIncrementQuantity}
           />
           <AddToCartButton onClick={handleAddToCart}>
-            <ShoppingCartSimple
-              weight="fill"
-              size={22}
-              color={theme.colors['base-card']}
-              style={{ backgroundColor: theme.colors['purple-dark'] }}
-            />
+            <ShoppingCartSimple weight="fill" size={22} />
           </AddToCartButton>
         </Order>
       </Controler>

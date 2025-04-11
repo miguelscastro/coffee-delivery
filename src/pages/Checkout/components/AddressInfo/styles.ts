@@ -44,10 +44,15 @@ export const InfoContent = styled.div<{ $display: 'grid' | 'flex' }>`
   ${({ $display }) =>
     $display === 'flex'
       ? `
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        gap: 0.75rem;
+        text-align: center;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          gap: 0.75rem; 
+          margin-bottom: 1rem;
+        }
       `
       : `
         display: grid;
@@ -61,8 +66,10 @@ export const InfoContent = styled.div<{ $display: 'grid' | 'flex' }>`
       `};
 `
 
-export const TextInput = styled.input<{ $area?: string }>`
+export const InputWrapper = styled.div<{ $area?: string }>`
   grid-area: ${({ $area }) => $area || 'auto'};
+  position: relative;
+  max-height: 47.27px;
 
   color: ${({ theme }) => theme.colors['base-label']};
   background: ${({ theme }) => theme.colors['base-input']};
@@ -70,7 +77,10 @@ export const TextInput = styled.input<{ $area?: string }>`
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors['base-button']};
 
-  padding: 0.75rem;
+  > input {
+    border: none;
+    width: 100%;
+  }
 
   &:not(:nth-last-child(-n + 3)) {
     margin-bottom: 1rem;
@@ -81,7 +91,50 @@ export const TextInput = styled.input<{ $area?: string }>`
   &:nth-child(6) {
     margin-right: 0.75rem;
   }
+
+  display: flex;
+  flex-direction: column;
 `
+
+export const TextInput = styled.input<{ $error?: string }>`
+  color: ${({ theme }) => theme.colors['base-label']};
+  background: ${({ theme }) => theme.colors['base-input']};
+
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors['base-button']};
+
+  padding: 0.75rem;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+    appearance: none;
+  }
+`
+
+export const OptionalText = styled.span`
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: ${({ theme }) => theme.colors['base-label']};
+  pointer-events: none;
+  ${mixins.fonts.textS}
+  font-style: italic;
+`
+export const ErrorText = styled.span`
+  color: ${({ theme }) => theme.colors.error};
+  ${mixins.fonts.titleXS}
+  font-size: 0.75rem;
+  width: 120%;
+  margin: 0.25rem 0;
+`
+
 export const PaymentOption = styled.label`
   display: flex;
   max-width: 178px;

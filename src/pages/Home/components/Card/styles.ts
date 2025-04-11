@@ -82,5 +82,12 @@ export const AddToCartButton = styled.button`
     padding: 0.5rem;
     height: 38px;
     width: 38px;
+    color: ${({ theme }) => theme.colors['base-card']};
+    background: ${({ theme }) => theme.colors['purple-dark']};
+    transition: 0.2s;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors['purple']};
+    }
   }
 `
