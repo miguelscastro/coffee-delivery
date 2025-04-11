@@ -24,7 +24,9 @@ export function Cart() {
           <div>
             <p>Total</p> <span>R$ {formatMoney(OrderTotal)}</span>
           </div>
-          <button>CONFIRMAR PEDIDO</button>
+          <button type="submit" form="order">
+            CONFIRMAR PEDIDO
+          </button>
         </Total>
       </Container>
     </>

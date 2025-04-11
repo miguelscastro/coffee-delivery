@@ -14,8 +14,11 @@ import {
   PaymentOptions,
   TextInput,
 } from './styles'
+import { useFormContext } from 'react-hook-form'
 
 export function AddressInfo() {
+  const { register } = useFormContext()
+
   return (
     <Container>
       <Address>
@@ -27,13 +30,25 @@ export function AddressInfo() {
           </div>
         </InfoHeader>
         <InfoContent $display="grid">
-          <TextInput $area="cep" placeholder="CEP" />
-          <TextInput $area="street" placeholder="Rua" />
-          <TextInput $area="number" placeholder="Número" />
-          <TextInput $area="fullAddress" placeholder="Complemento" />
-          <TextInput $area="neighborhood" placeholder="Bairro" />
-          <TextInput $area="city" placeholder="Cidade" />
-          <TextInput $area="federalState" placeholder="UF" />
+          <TextInput $area="cep" placeholder="CEP" {...register('cep')} />
+          <TextInput $area="street" placeholder="Rua" {...register('street')} />
+          <TextInput
+            $area="number"
+            placeholder="Número"
+            {...register('number')}
+          />
+          <TextInput
+            $area="fullAddress"
+            placeholder="Complemento"
+            {...register('fullAddress')}
+          />
+          <TextInput
+            $area="neighborhood"
+            placeholder="Bairro"
+            {...register('neighborhood')}
+          />
+          <TextInput $area="city" placeholder="Cidade" {...register('city')} />
+          <TextInput $area="state" placeholder="UF" {...register('state')} />
         </InfoContent>
       </Address>
       <PaymentOptions>
@@ -48,21 +63,33 @@ export function AddressInfo() {
         </InfoHeader>
         <InfoContent $display="flex">
           <PaymentOption>
-            <TextInput type="radio" name="payment" value="credit" />
+            <TextInput
+              type="radio"
+              value="credit"
+              {...register('paymentMethod')}
+            />
             <div>
               <CreditCard />
               <p>CARTÃO DE CRÉDITO</p>
             </div>
           </PaymentOption>
           <PaymentOption>
-            <TextInput type="radio" name="payment" value="debit" />
+            <TextInput
+              type="radio"
+              value="debit"
+              {...register('paymentMethod')}
+            />
             <div>
               <Bank />
               <p>CARTÃO DE DÉBITO</p>
             </div>
           </PaymentOption>
           <PaymentOption>
-            <TextInput type="radio" name="payment" value="cash" />
+            <TextInput
+              type="radio"
+              value="cash"
+              {...register('paymentMethod')}
+            />
             <div>
               <Money />
               <p>DINHEIRO</p>

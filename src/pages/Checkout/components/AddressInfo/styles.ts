@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { mixins } from '../../../../styles/mixins'
 
-export const Container = styled.form`
+export const Container = styled.div`
   max-width: 640px;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ export const InfoContent = styled.div<{ $display: 'grid' | 'flex' }>`
           'cep . .'
           'street street street'
           'number fullAddress fullAddress'
-          'neighborhood city federalState';
+          'neighborhood city state';
         gap: 0.25rem;
       `};
 `
