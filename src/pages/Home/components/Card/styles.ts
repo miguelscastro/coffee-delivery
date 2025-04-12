@@ -51,6 +51,8 @@ export const Controler = styled.div`
   padding: 0 1.5rem 1.25rem;
   align-items: center;
   gap: 1.4375rem;
+
+  z-index: 1;
 `
 export const Price = styled.div`
   display: flex;

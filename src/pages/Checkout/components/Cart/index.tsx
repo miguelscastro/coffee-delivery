@@ -1,7 +1,7 @@
 import { useCart } from '../../../../hooks/useCart'
 import { formatMoney } from '../../../../utils/formatMoney'
 import { SelectedCoffee } from '../SelectedCoffeeCard'
-import { Coffees, Container, Total } from './styles'
+import { Coffees, Container, Total, WarningMessage } from './styles'
 
 export function Cart() {
   const { coffees, cartItemsTotal, deliveryFee, OrderTotal, CartSize } =
@@ -12,7 +12,7 @@ export function Cart() {
       <Container>
         <Coffees>
           {coffees.length == 0 ? (
-            <h3>Seu carrinho está vazio</h3>
+            <WarningMessage>Seu carrinho está vazio</WarningMessage>
           ) : (
             coffees.map((coffee) => {
               return <SelectedCoffee key={coffee.id} coffee={coffee} />

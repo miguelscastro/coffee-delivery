@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer, useState } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { CartItem, cartReducer } from '../reducers/cart/reducer'
 import {
   addItemToCartAction,
@@ -6,7 +6,6 @@ import {
   clearCartAction,
   removeCartItemAction,
 } from '../reducers/cart/actions'
-import { AddressInfoData } from '../pages/Checkout'
 
 interface CartContextProviderProps {
   children: ReactNode
@@ -24,21 +23,26 @@ interface CartContextType {
     type: 'increase' | 'decrease',
   ) => void
   removeCartItem: (coffeeId: string) => void
-  addNewOrder: (order: OrderProps) => void
   clearCart: () => void
-}
-
-interface OrderProps {
-  coffees: CartItem[]
-  address: AddressInfoData
 }
 
 export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartState, dispatch] = useReducer(cartReducer, { coffees: [] })
-  const [orders, setOrders] = useState<OrderProps[]>([])
-  console.log(orders)
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    { coffees: [] },
+    (initialState) => {
+      const storageStateAsJSON = localStorage.getItem(
+        '@coffee-delivery:cart-state-1.0.0',
+      )
+      if (storageStateAsJSON) {
+        return JSON.parse(storageStateAsJSON)
+      }
+
+      return initialState
+    },
+  )
 
   const { coffees } = cartState
 
@@ -51,6 +55,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const OrderTotal = cartItemsTotal + deliveryFee
 
   const CartSize = coffees.length
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartState)
+
+    localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJSON)
+  }, [cartState])
 
   function addCoffeeToCart(coffeeToAdd: CartItem) {
     dispatch(addItemToCartAction(coffeeToAdd))
@@ -71,14 +81,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(clearCartAction())
   }
 
-  function addNewOrder(order: OrderProps) {
-    setOrders((state) => {
-      const newState = [...state, order]
-      console.log(newState)
-      return newState
-    })
-  }
-
   return (
     <CartContext.Provider
       value={{
@@ -90,7 +92,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addCoffeeToCart,
         changeCartItemQuantity,
         removeCartItem,
-        addNewOrder,
         clearCart,
       }}
     >

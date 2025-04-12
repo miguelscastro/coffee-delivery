@@ -3,7 +3,6 @@ import { mixins } from '../../styles/mixins'
 
 export const Banner = styled.section`
   position: relative;
-  pointer-events: none;
 
   img#banner-bg {
     position: absolute;
@@ -21,7 +20,6 @@ export const BannerContent = styled.div`
   align-items: center;
 
   img {
-    pointer-events: none;
     user-select: none;
   }
 

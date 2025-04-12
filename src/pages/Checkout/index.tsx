@@ -45,7 +45,7 @@ export function Checkout() {
 
   const { handleSubmit, reset } = AddressInfoForm
 
-  const { coffees, CartSize, addNewOrder, clearCart } = useCart()
+  const { coffees, CartSize, clearCart } = useCart()
 
   const navigate = useNavigate()
 
@@ -53,7 +53,6 @@ export function Checkout() {
     if (CartSize > 0) {
       const address = data
       const order = { coffees, address }
-      addNewOrder(order)
       reset()
       clearCart()
       navigate('/success', {

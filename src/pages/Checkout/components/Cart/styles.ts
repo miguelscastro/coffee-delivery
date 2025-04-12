@@ -17,14 +17,14 @@ export const Coffees = styled.div`
   &::-webkit-scrollbar {
     width: 0.25rem;
   }
+`
 
-  > h3 {
-    ${mixins.fonts.titleXS}
-    text-align: center;
+export const WarningMessage = styled.h3`
+  ${mixins.fonts.titleXS}
+  text-align: center;
 
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors['base-button']};
-  }
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors['base-button']};
 `
 
 export const Total = styled.div`
