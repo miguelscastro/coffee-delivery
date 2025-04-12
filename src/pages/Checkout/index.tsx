@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { AddressInfo } from './components/AddressInfo'
 import { Cart } from './components/Cart'
@@ -20,7 +21,7 @@ const AddressInfoValidationSchema = z.object({
   neighborhood: z.string().min(1, 'Informe o bairro'),
   city: z.string().min(1, 'Informe a cidade').max(56, 'Máximo de 55 dígitos'),
   state: z.string().min(2, 'Informe a UF').max(2, 'Máximo de 2 dígitos'),
-  paymentMethod: z.enum(['credit', 'debit', 'cash'], {
+  paymentMethod: z.enum(['Cartão de Crédito', 'Cartão de Débito', 'Dinheiro'], {
     invalid_type_error: 'Informe um método de pagamento',
   }),
 })
@@ -46,12 +47,18 @@ export function Checkout() {
 
   const { coffees, CartSize, addNewOrder } = useCart()
 
+  const navigate = useNavigate()
+
   function confirmOrder(data: AddressInfoData) {
     if (CartSize > 0) {
       const address = data
       const order = { coffees, address }
       addNewOrder(order)
       reset()
+
+      navigate('/success', {
+        state: order,
+      })
     }
   }
 

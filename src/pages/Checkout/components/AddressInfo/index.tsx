@@ -133,7 +133,7 @@ export function AddressInfo() {
             <PaymentOption>
               <TextInput
                 type="radio"
-                value="credit"
+                value="Cartão de Crédito"
                 required
                 {...register('paymentMethod')}
               />
@@ -145,7 +145,7 @@ export function AddressInfo() {
             <PaymentOption>
               <TextInput
                 type="radio"
-                value="debit"
+                value="Cartão de Débito"
                 {...register('paymentMethod')}
               />
               <div>
@@ -156,7 +156,7 @@ export function AddressInfo() {
             <PaymentOption>
               <TextInput
                 type="radio"
-                value="cash"
+                value="Dinheiro"
                 {...register('paymentMethod')}
               />
               <div>
