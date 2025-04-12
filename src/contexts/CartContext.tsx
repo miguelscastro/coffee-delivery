@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer, useState } from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
 import { CartItem, cartReducer } from '../reducers/cart/reducer'
 import {
   addItemToCartAction,
@@ -6,7 +6,7 @@ import {
   clearCartAction,
   removeCartItemAction,
 } from '../reducers/cart/actions'
-import { AddressInfoData } from '../pages/Checkout'
+// import { AddressInfoData } from '../pages/Checkout'
 
 interface CartContextProviderProps {
   children: ReactNode
@@ -24,20 +24,20 @@ interface CartContextType {
     type: 'increase' | 'decrease',
   ) => void
   removeCartItem: (coffeeId: string) => void
-  addNewOrder: (order: OrderProps) => void
+  // addNewOrder: (order: OrderProps) => void
   clearCart: () => void
 }
 
-interface OrderProps {
-  coffees: CartItem[]
-  address: AddressInfoData
-}
+// interface OrderProps {
+//   coffees: CartItem[]
+//   address: AddressInfoData
+// }
 
 export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(cartReducer, { coffees: [] })
-  const [orders, setOrders] = useState<OrderProps[]>([])
+  // const [orders, setOrders] = useState<OrderProps[]>([])
 
   const { coffees } = cartState
 
@@ -70,13 +70,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(clearCartAction())
   }
 
-  function addNewOrder(order: OrderProps) {
-    setOrders((state) => {
-      const newState = [...state, order]
-      console.log(newState)
-      return newState
-    })
-  }
+  // function addNewOrder(order: OrderProps) {
+  //   setOrders((state) => {
+  //     const newState = [...state, order]
+  //     console.log(newState)
+  //     return newState
+  //   })
+  // }
 
   return (
     <CartContext.Provider
@@ -89,7 +89,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addCoffeeToCart,
         changeCartItemQuantity,
         removeCartItem,
-        addNewOrder,
+        // addNewOrder,
         clearCart,
       }}
     >
