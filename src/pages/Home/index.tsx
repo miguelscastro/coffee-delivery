@@ -27,7 +27,7 @@ export function Home() {
   const [coffeesData, setCoffeesData] = useState<CoffeeProps[]>([])
   useEffect(() => {
     const fetchCoffees = async () => {
-      const response = await fetch('/src/data/coffees.json')
+      const response = await fetch('/coffees.json')
       const data = await response.json()
       setCoffeesData(data.coffees)
     }
