@@ -38,6 +38,7 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartState, dispatch] = useReducer(cartReducer, { coffees: [] })
   const [orders, setOrders] = useState<OrderProps[]>([])
+  console.log(orders)
 
   const { coffees } = cartState
 
