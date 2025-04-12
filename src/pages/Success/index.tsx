@@ -32,7 +32,8 @@ export function Success() {
                 </span>
               </h3>
               <p>
-                Farrapos - Porto Alegre, <span>{state.address.state}</span>
+                {state.address.neighborhood} - {state.address.city},{' '}
+                <span>{state.address.state}</span>
               </p>
             </StatusFieldHeader>
           </StatusField>
