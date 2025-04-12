@@ -3,6 +3,7 @@ import { CartItem, cartReducer } from '../reducers/cart/reducer'
 import {
   addItemToCartAction,
   changeCartItemQuantityAction,
+  clearCartAction,
   removeCartItemAction,
 } from '../reducers/cart/actions'
 import { AddressInfoData } from '../pages/Checkout'
@@ -24,6 +25,7 @@ interface CartContextType {
   ) => void
   removeCartItem: (coffeeId: string) => void
   addNewOrder: (order: OrderProps) => void
+  clearCart: () => void
 }
 
 interface OrderProps {
@@ -64,6 +66,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(removeCartItemAction(coffeeToRemove))
   }
 
+  function clearCart() {
+    dispatch(clearCartAction())
+  }
+
   function addNewOrder(order: OrderProps) {
     setOrders((state) => {
       const newState = [...state, order]
@@ -84,6 +90,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         changeCartItemQuantity,
         removeCartItem,
         addNewOrder,
+        clearCart,
       }}
     >
       {children}

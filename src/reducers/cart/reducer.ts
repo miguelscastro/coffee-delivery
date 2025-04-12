@@ -1,6 +1,5 @@
 import { produce } from 'immer'
 import { CartActions, CartActionTypes } from './actions'
-import { AddressInfoData } from '../../pages/Checkout'
 
 export interface CoffeeProps {
   id: string
@@ -61,6 +60,12 @@ export function cartReducer(state: CartState, action: CartActions) {
           draft.coffees.splice(coffeeToRemove, 1)
         }
       })
+    }
+    case CartActionTypes.CLEAR_CART: {
+      return {
+        ...state,
+        coffees: [],
+      }
     }
   }
 }
