@@ -14,7 +14,6 @@ import {
 
 export function Success() {
   const { state } = useLocation()
-  console.log(state)
 
   return (
     <Container>
