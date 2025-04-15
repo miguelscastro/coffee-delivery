@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  @media screen and (max-width: 1440px) {
+    width: 570px;
+  }
 `
 
 const baseInfoContainer = styled.div`
@@ -65,6 +69,10 @@ export const InfoContent = styled.div<{ $display: 'grid' | 'flex' }>`
           'neighborhood city state';
         gap: 0.25rem;
       `};
+
+  @media screen and (max-width: 1440px) {
+    grid-template-columns: 180px 256px 50px;
+  }
 `
 
 export const InputWrapper = styled.div<{ $area?: string }>`
@@ -176,5 +184,15 @@ export const PaymentOption = styled.label`
   }
   > div:hover {
     background-color: ${({ theme }) => theme.colors['base-hover']};
+  }
+
+  @media screen and (max-width: 1440px) {
+    width: 160px;
+
+    > div p {
+      ${mixins.fonts.tag}
+      font-weight: normal;
+      font-size: 60%;
+    }
   }
 `

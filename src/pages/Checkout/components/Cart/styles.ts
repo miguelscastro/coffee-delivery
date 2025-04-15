@@ -9,6 +9,10 @@ export const Container = styled.section`
   border-top-right-radius: 6px;
 
   background: ${({ theme }) => theme.colors['base-card']};
+
+  @media screen and (max-width: 1440px) {
+    width: 400px;
+  }
 `
 export const Coffees = styled.div`
   max-height: 370px;

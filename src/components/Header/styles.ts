@@ -20,6 +20,10 @@ export const HeaderContainer = styled.header`
   a {
     height: 40px;
   }
+  @media screen and (max-width: 1440px) {
+    max-width: 1000px;
+    padding: 2rem 2rem;
+  }
 `
 
 export const Aside = styled.aside`

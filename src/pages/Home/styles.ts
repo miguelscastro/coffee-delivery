@@ -28,7 +28,17 @@ export const BannerContent = styled.div`
   margin: 0 auto;
   max-height: 544px;
   max-width: 1440px;
+
+  @media screen and (max-width: 1440px) {
+    padding: 2.5rem 2rem;
+    width: 1000px;
+
+    img {
+      width: 400px;
+    }
+  }
 `
+
 export const Heading = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,6 +53,14 @@ export const Heading = styled.div`
   > p {
     ${mixins.fonts.textL};
     color: ${({ theme }) => theme.colors['base-subtitle']};
+  }
+  @media screen and (max-width: 1440px) {
+    > h1 {
+      ${mixins.fonts.titleL}
+    }
+    > p {
+      ${mixins.fonts.textM}
+    }
   }
 `
 
@@ -63,6 +81,12 @@ export const Info = styled.ul`
       border-radius: 100%;
     }
   }
+
+  @media screen and (max-width: 1440px) {
+    li {
+      ${mixins.fonts.textS};
+    }
+  }
 `
 export const CoffesList = styled.main`
   display: flex;
@@ -76,10 +100,25 @@ export const CoffesList = styled.main`
     ${mixins.fonts.titleL}
     margin-bottom: 3.375rem;
   }
+
+  @media screen and (max-width: 1440px) {
+    width: 1000px;
+    padding: 0 2rem;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      ${mixins.fonts.titleM}
+      margin-bottom: 2rem;
+    }
+  }
 `
 export const Coffees = styled.div`
   display: flex;
 
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media screen and (max-width: 1440px) {
+    gap: 2rem;
+  }
 `

@@ -88,7 +88,7 @@ export function Home() {
           </div>
           <img src={coffeDeliveryBanner} alt="" />
         </BannerContent>
-        <img src={backgroundEffect} id="banner-bg" alt="" />
+        {/* <img src={backgroundEffect} id="banner-bg" alt="" /> */}
       </Banner>
       <CoffesList>
         <h2>Nossos cafés</h2>

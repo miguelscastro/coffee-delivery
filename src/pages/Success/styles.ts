@@ -11,6 +11,12 @@ export const Container = styled.main`
   max-width: 1440px;
 
   align-items: flex-end;
+
+  @media screen and (max-width: 1440px) {
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
 `
 
 export const StatusContainer = styled.section`
