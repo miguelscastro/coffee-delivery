@@ -190,7 +190,7 @@ export const PaymentOption = styled.label`
     width: 160px;
 
     > div p {
-      ${mixins.fonts.tag}
+      ${mixins.fonts.buttonM}
       font-weight: normal;
       font-size: 60%;
     }
